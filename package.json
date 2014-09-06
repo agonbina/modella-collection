@@ -1,0 +1,23 @@
+{
+  "name": "modella-collection",
+  "version": "0.1.0",
+  "description": "A Collection plugin for modella",
+    "scripts": {
+        "test": "./node_modules/.bin/testem"
+    },
+  "repository": {
+    "url": "git@github.com:agonbina/modella-collection.git",
+    "type": "git"
+  },
+  "devDependencies": {
+    "modella": "^0.2.8",
+    "mocha": "^1.21.4",
+    "testem": "^0.6.18",
+    "chai": "^1.9.1",
+    "sinon": "^1.10.3",
+    "sinon-chai": "^2.5.0"
+  },
+  "dependencies": {
+    "enumerable-component": "^0.3.1"
+  }
+}

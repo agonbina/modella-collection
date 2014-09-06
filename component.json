@@ -1,0 +1,16 @@
+{
+  "name": "modella-collection",
+  "version": "0.1.0",
+  "description": "A Collection plugin for modella",
+  "scripts": [
+    "index.js",
+    "lib/collection.js",
+    "lib/collection-plugin.js"
+  ],
+  "main": "index.js",
+  "repo": "git@github.com:agonbina/modella-collection",
+  "dependencies": {
+    "modella/modella": "~0.2.8",
+    "component/enumerable": "~0.3.2"
+  }
+}
