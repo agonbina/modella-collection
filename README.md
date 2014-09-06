@@ -3,4 +3,20 @@
 # modella-collection
 A Collection plugin for [modella](https://github.com/modella/modella).
 
+
+### Example
+```
+var Animal = modella('Animal').attr('id').attr('type', { type: 'string' });
+var User = modella('User')
+        .attr('id')
+        .attr('pets', { type: [ Animal ] })
+        .use(collection);
+
+var cat = new Animal({ id: 'kitty', type: 'cat' });
+var me = new User({ id: 'agonbina', pets: [ cat ] });
+
+me.pets().each(function(pet) {
+    console.log(pet.id()); // 'kitty'
+});
+```
 ### API

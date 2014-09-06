@@ -9,6 +9,7 @@ if (typeof process !== 'undefined' && process.title === 'node') {
 
     modella = require('modella');
     collection = require('..');
+    Collection = collection.Collection;
 
     isBrowser = false;
 } else {
