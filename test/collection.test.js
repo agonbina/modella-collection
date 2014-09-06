@@ -1,7 +1,8 @@
-
 describe('Collection', function () {
 
-    var User = modella('User').attr('id');
+    var User = modella('User')
+        .attr('id')
+        .attr('name', { type: 'string' });
     var me = new User({ id: 'agonbina' });
     var users = new Collection();
 
@@ -28,6 +29,20 @@ describe('Collection', function () {
 
         expect(itemAdded).to.have.been.calledOnce;
         expect(itemAdded).to.have.been.calledWith(user);
+    });
+
+    it('should reset the collection to empty using .reset, and emit an event', function () {
+        var onReset = sinon.spy();
+        var models = users.models;
+
+        expect(users.length()).to.be.at.least(1);
+
+        users.on('reset', onReset);
+        users.reset();
+
+        expect(users.length()).to.equal(0);
+        expect(onReset).to.have.been.calledOnce;
+        expect(onReset).to.have.been.calledWith(models);
     });
 
     describe('.remove and removeWhere', function () {
@@ -68,6 +83,20 @@ describe('Collection', function () {
             expect(users.has(agon)).to.be.false;
         });
 
+    });
+
+    it('should return a JSON representation of the collection using .toJSON', function () {
+        var user1 = { id: 'agonbina', name: 'agon' },
+            user2 = { id: 'kitty', name: 'kitty' },
+            user3 = { id: 'cr7', name: 'ronaldo' };
+
+        users = new Collection([ new User(user1), new User(user2), new User(user3)]);
+
+        var obj = users.toJSON();
+
+        expect(users.length()).to.equal(3);
+        expect(obj).to.have.length(3);
+        expect(obj).to.deep.include.members([ user1, user2, user3 ]);
     });
 
 });
