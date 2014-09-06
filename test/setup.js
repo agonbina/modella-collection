@@ -16,7 +16,7 @@ if (typeof process !== 'undefined' && process.title === 'node') {
     // We are in the browser. Set up variables like above using served js files.
     expect = chai.expect;
 
-    modella = require('modella/modella');
+    modella = require('modella');
     collection = require('modella-collection');
 
     isBrowser = true;

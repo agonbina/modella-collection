@@ -9,7 +9,7 @@ var me = new User({ id: 'agonbina' });
 
 var users = new collection.Collection([ me ]);
 
-users.on('added', function (user) {
+users.on('add', function (user) {
     console.log('Added a new user: ' + user.id());
 });
 

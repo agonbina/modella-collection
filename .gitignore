@@ -3,6 +3,7 @@
 build/*
 example/components
 example/build.js
+example/build/build.js
 
 # Logs
 logs
