@@ -11,7 +11,6 @@
   "repo": "git@github.com:agonbina/modella-collection",
   "dependencies": {
     "component/enumerable": "~0.3.2",
-    "component/emitter": "^1.0.1",
     "component/assert": "~0.4.0"
   }
 }

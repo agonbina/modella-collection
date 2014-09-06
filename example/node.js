@@ -1,13 +1,13 @@
 
-var modella = require('modella/modella');
-var collection = require('agonbina/modella-collection');
+var modella = require('modella');
+var Collection = require('..').Collection;
 
 var User = modella('User')
     .attr('id');
 
 var me = new User({ id: 'agonbina' });
 
-var users = new collection.Collection([ me ]);
+var users = new Collection([ me ]);
 
 users.on('added', function (user) {
     console.log('Added a new user: ' + user.id());
