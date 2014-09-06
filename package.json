@@ -10,7 +10,7 @@
     "type": "git"
   },
   "devDependencies": {
-    "modella": "^0.2.8",
+    "modella": "https://github.com/agonbina/modella/archive/0.2.9.tar.gz",
     "mocha": "^1.21.4",
     "testem": "^0.6.18",
     "chai": "^1.9.1",
