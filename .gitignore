@@ -1,6 +1,7 @@
 # Other
 .idea
 build/*
+example/components
 
 # Logs
 logs

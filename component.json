@@ -10,7 +10,6 @@
   "main": "index.js",
   "repo": "git@github.com:agonbina/modella-collection",
   "dependencies": {
-    "modella/modella": "~0.2.8",
     "component/enumerable": "~0.3.2"
   }
 }
