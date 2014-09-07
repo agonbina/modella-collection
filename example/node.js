@@ -8,13 +8,13 @@ var User = modella('User')
     .attr('pets', { type: [ Animal ] })
     .use(collection);
 
-User.attr('cows', { type: [Animal] });
-
 var cat = new Animal({ id: 'kitty', type: 'cat' });
 var dog = new Animal({ id: 'doggy', type: 'dog' });
-var me = new User({ id: 'agonbina', pets: [ cat ] });
+var me = new User({ id: 'agonbina', pets: [ cat, dog ] });
 
-var pets = me.pets();
+var pets = me.get('pets');
+console.log(pets.toJSON());
+return;
 
 pets.on('add', function (pet) {
     console.log('New pet %s added!', pet.id());
