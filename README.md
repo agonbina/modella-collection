@@ -9,11 +9,11 @@ A Collection plugin for [modella](https://github.com/modella/modella).
 var Animal = modella('Animal').attr('id').attr('type', { type: 'string' });
 var User = modella('User')
         .attr('id')
-        **.attr('pets', { type: [ Animal ] })**
+        .attr('pets', { type: [ Animal ] })
         .use(collection);
 
 var cat = new Animal({ id: 'kitty', type: 'cat' });
-var me = new User({ id: 'agonbina', **pets: [ cat ]** });
+var me = new User({ id: 'agonbina', pets: [ cat ] });
 
 me.pets().each(function(pet) {
     console.log(pet.id()); // 'kitty'
@@ -24,8 +24,10 @@ var pets = me.get('pets');
 ## API
 
 ### Collection#.add(instance:Model|obj:Mixed)
-Add a new instance to the collection.
+Add a new instance to the collection. Emits ```'add'``` event.
 ```
+pets.on('add', function(newPet) { });
+
 pets.add({ id: 'doggy', type: 'dog'});
 pets.last() instanceof Animal ==> true
 
@@ -35,8 +37,10 @@ pets.add(newCat);
 ```
 
 ### Collection#.remove(instance:Model)
-Remove an instance from the collection.
+Remove an instance from the collection. Emits ```'remove'``` event.
 ```
+pets.on('remove', function(removedPet) { });
+
 pets.remove(newCat);
 pets.has(newCat); // false
 ```
