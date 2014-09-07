@@ -3,6 +3,16 @@
 # modella-collection
 A Collection plugin for [modella](https://github.com/modella/modella).
 
+## Installation
+
+With node.js:
+
+    npm install modella-collection
+
+In the browser (using [component](https://github.com/component/component)):
+
+    component install agonbina/modella-collection
+
 
 ## Example
 ```
@@ -21,6 +31,8 @@ me.pets().each(function(pet) {
 
 var pets = me.get('pets');
 ```
+For more examples see [examples](/example).
+
 ## API
 
 Every Collection instance will inherit all [Enumerable](https://github.com/component/enumerable) methods, so go check them out!
