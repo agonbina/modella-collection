@@ -4,10 +4,10 @@ describe('Collection', function () {
         .attr('id')
         .attr('name', { type: 'string' });
     var me = new User({ id: 'agonbina' });
-    var users = new Collection();
+    var users = new Collection(User);
 
     it('should allow instantiating a collection with an array', function () {
-        var friends = new Collection([ me ]);
+        var friends = new Collection(User, [ me ]);
 
         expect(friends.length()).to.equal(1);
         expect(friends.has(me)).to.be.true;
@@ -15,8 +15,10 @@ describe('Collection', function () {
 
     it('should add a new item using .add', function () {
         users.add(new User({ id: 'gonigkum' }));
+        users.add({ id: 'agonbina' });
 
-        expect(users.length()).to.equal(1);
+        expect(users.length()).to.equal(2);
+        expect(users.at(1)).to.be.instanceof(User);
         expect(users.at(0).id()).to.equal('gonigkum');
     });
 
@@ -45,13 +47,28 @@ describe('Collection', function () {
         expect(onReset).to.have.been.calledWith(models);
     });
 
+    it('should return a JSON representation of the collection using .toJSON', function () {
+        var user1 = { id: 'agonbina', name: 'agon' },
+            user2 = { id: 'kitty', name: 'kitty' },
+            user3 = { id: 'cr7', name: 'ronaldo' };
+
+        users.reset();
+        users.add(new User(user1)).add(new User(user2)).add(new User(user3));
+
+        var obj = users.toJSON();
+
+        expect(users.length()).to.equal(3);
+        expect(obj).to.have.length(3);
+        expect(obj).to.deep.include.members([ user1, user2, user3 ]);
+    });
+
     describe('.remove and removeWhere', function () {
 
         var agon = new User({ id: 'agon' }),
             tobi = new User({ id: 'tobi' });
 
         before(function () {
-            users = new Collection([agon, tobi]);
+            users.reset().add(agon).add(tobi);
         });
 
         it('should remove an item from the collection', function () {
@@ -83,20 +100,6 @@ describe('Collection', function () {
             expect(users.has(agon)).to.be.false;
         });
 
-    });
-
-    it('should return a JSON representation of the collection using .toJSON', function () {
-        var user1 = { id: 'agonbina', name: 'agon' },
-            user2 = { id: 'kitty', name: 'kitty' },
-            user3 = { id: 'cr7', name: 'ronaldo' };
-
-        users = new Collection([ new User(user1), new User(user2), new User(user3)]);
-
-        var obj = users.toJSON();
-
-        expect(users.length()).to.equal(3);
-        expect(obj).to.have.length(3);
-        expect(obj).to.deep.include.members([ user1, user2, user3 ]);
     });
 
 });
