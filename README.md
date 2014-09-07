@@ -23,6 +23,9 @@ var pets = me.get('pets');
 ```
 ## API
 
+Every Collection instance will inherit all [Enumerable](https://github.com/component/enumerable) methods, so go check them out!
+Below are some of the methods that you would expect to have in a collection.
+
 ### Collection#.add(instance:Model|obj:Mixed)
 Add a new instance to the collection. Emits ```'add'``` event.
 ```
