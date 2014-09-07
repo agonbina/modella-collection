@@ -1,26 +1,35 @@
 
-var modella = require('modella');
-var collection = require('modella-collection');
+var modella = require('modella/modella@master');
+var collection = require('agonbina/modella-collection');
 
+var Animal = modella('Animal').attr('id').attr('type', { type: 'string' });
 var User = modella('User')
-    .attr('id');
+    .attr('id')
+    .attr('pets', { type: [ Animal ] })
+    .use(collection);
 
-var me = new User({ id: 'agonbina' });
+User.attr('cows', { type: [Animal] });
 
-var users = new collection.Collection([ me ]);
+var cat = new Animal({ id: 'kitty', type: 'cat' });
+var dog = new Animal({ id: 'doggy', type: 'dog' });
+var me = new User({ id: 'agonbina', pets: [ cat ] });
 
-users.on('add', function (user) {
-    console.log('Added a new user: ' + user.id());
+var pets = me.pets();
+
+pets.on('add', function (pet) {
+    console.log('New pet %s added!', pet.id());
 });
+pets.on('remove', function (pet) {
+    console.log('Removed pet %s', pet.id());
+});
+
+pets.add(dog).add(cat);
 
 setTimeout(function () {
-    users.add(new User({ id: 'gonigkum' }));
+    pets.removeWhere({ type: 'dog' });
+
+    setTimeout(function () {
+        pets.removeWhere({ type: 'cat' });
+    }, 1500);
+
 }, 1500);
-
-users.each(function (user) {
-    console.log(user.id());
-});
-
-users.map('id').each(function (id) {
-    console.log(id);
-});

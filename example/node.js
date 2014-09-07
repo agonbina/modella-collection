@@ -24,6 +24,15 @@ pets.on('remove', function (pet) {
 });
 
 pets.add(dog).add(cat);
+pets.add({ id: 'mydog', type: 'dog' }); // pets.at(3) instanceof Animal ==> true
+
+pets
+    .select(function (pet) {
+        return pet.type() === 'dog';
+    })
+    .each(function (dog) {
+        console.log(dog.id());
+    });
 
 setTimeout(function () {
     pets.removeWhere({ type: 'dog' });
